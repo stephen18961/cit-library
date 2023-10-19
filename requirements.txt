@@ -1,0 +1,4 @@
+pip intall Flask
+pip install Flask-MySQL
+pip install Flask-SQLAlchemy
+pip install Flask-Bcrypt

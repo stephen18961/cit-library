@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Homepage</title>
+    <!-- Sertakan Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="admin.css">
+    
+    <style>
+        /* CSS tambahan untuk menyesuaikan warna utama, posisi menu, dan batas lebar */
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap; /* Mengizinkan kotak-kotak untuk turun ke bawah */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .menu-item {
+            flex: 1 0 300px; /* Mengubah flex basis menjadi 300px */
+            max-width: 300px; /* Mengubah max-width menjadi 300px */
+            height: 200px;
+            background-color: #800507;
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .menu-item:hover {
+            background-color: #a80d09;
+        }
+
+        /* Media query untuk perangkat berukuran kecil */
+        @media (max-width: 768px) {
+            .menu-item {
+                flex: 0 0 calc(50% - 20px); /* 50% untuk 2 kolom */
+                max-width: calc(50% - 20px);
+            }
+        }
+
+        /* Batas lebar halaman */
+        .custom-container {
+            max-width: 1200px; /* Sesuaikan dengan lebar yang Anda inginkan */
+            margin: 0 auto; /* Menengahkan halaman */
+            padding: 0 20px; /* Padding sisi untuk memberikan ruang di sekitar konten */
+        }
+    </style>
+</head>
+<body>
+    <header class="text-white cit-bg p-3">
+        <h3 class="text-center cit-bg text-white">ADMIN PAGE</h3>
+    </header>
+    <div class="custom-container">
+        <div class="menu-container">
+            <!-- Kotak-kotak besar sebagai menu -->
+            <div class="menu-item" onclick="window.location.href = '/bibliography';">Database Buku</div>
+            <div class="menu-item" onclick="window.location.href = '/borrow';">Peminjaman</div>
+            <div class="menu-item" onclick="window.location.href = 'pengembalian.html';">Pengembalian</div>
+            <div class="menu-item" onclick="window.location.href = 'halaman4.html';">Data Keterlambatan</div>
+            <div class="menu-item" onclick="window.location.href = 'register.html';">Registrasi</div>
+            <div class="menu-item" onclick="window.location.href = 'halaman6.html';">Menu 6</div>
+            <!-- Tambahkan lebih banyak menu jika diperlukan -->
+        </div>
+    </div>
+    <div style="background-color: #800507; padding: 15px; text-align: center;">
+        <a class="btn text-white" style="background-color: #800507;" href="/logout-admin">LOGOUT</a>
+    </div>
+
+    <!-- Sertakan Bootstrap JS (Opsional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

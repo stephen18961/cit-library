@@ -1,0 +1,43 @@
+{% extends "admin/layout.html" %} {% block body %}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-center align-items-center" style="border-radius: 10px 0px 0px 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); background-color: #f5f5f5;">
+      <img src="{{ url_for('static', filename='images/logo-cit-peminjaman.png') }}" alt="Login Image" class="img-fluid" style="width: 300px;">
+    </div>
+    <div class="col-md-6 bg-white p-4" style="border-radius: 0px 10px 10px 0px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);">
+      <h2>Registrasi Akun</h2>
+      <form action="/register" method="POST">
+        <div class="mb-3">
+          <label for="nama" class="form-label"><b>Nama Mahasiswa:</b></label>
+          <input type="text" class="form-control" id="nama" placeholder="Enter Nama Mahasiswa" name="nama" required>
+        </div>
+        <div class="mb-3">
+          <label for="nim" class="form-label"><b>Nomor Induk Mahasiswa</b></label>
+          <input type="text" class="form-control" id="nim" placeholder="Enter NIM" name="nim" required>
+        </div>
+        <div class="mb-3">
+          <label for="psw" class="form-label"><b>Password</b></label>
+          <input type="password" class="form-control" id="psw" placeholder="Enter Password" name="psw" required>
+        </div>
+        <div class="mb-3">
+          <label for="repeat-psw" class="form-label"><b>Repeat Password</b></label>
+          <input type="password" class="form-control" id="repeat-psw" placeholder="Repeat Password" name="psw-repeat" required>
+        </div>
+        <button type="submit" class="btn btn-danger btn-block w-100" style="background-color: #800507; color: white;">Register</button>
+      </form>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} mt-3">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+
+  
+  </div>
+  <br>
+</div>
+  
+{% endblock %}

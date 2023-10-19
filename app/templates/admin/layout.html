@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Admin</title>
+    <!-- Tambahkan tautan CSS Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .navbar {
+            padding: 15px 0;
+        }
+        .navbar-brand img {
+            width: 150px;
+        }
+        .navbar-nav .nav-link {
+            font-size: 16px;
+        }
+        .bg-custom {
+            background-color: #6d1c1c;
+        }
+        #logout-button .nav-item .nav-link:hover {
+            background-color: #fff; /* Warna latar belakang pada hover */
+            color: #6d1c1c; /* Warna teks pada hover */
+            transition: background-color 0.3s, color 0.3s; /* Waktu transisi */
+        }
+        .main-color {
+            color: #800507;
+        }
+        .btn-main {
+            background-color: #800507;
+            color: #fff;
+        }
+        /* Gaya CSS Kustom untuk header dan navigation bar */
+        .navbar {
+            background-color: #800507;
+        }
+        .navbar a {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header menggunakan Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='images/library-logo.png') }}" alt="Logo"></a>
+            <!-- Tombol Toggle untuk tampilan responsif pada perangkat kecil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navigasi -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/borrow">Peminjaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/return">Pengembalian</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bibliography">Daftar Buku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transactions">Data Keterlambatan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register" style="margin-right: 10px;">Registrasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/logout-admin" style="border: 1px solid white; padding: 6px 12px; border-radius: 5px;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %} {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

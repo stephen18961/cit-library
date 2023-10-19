@@ -1,0 +1,54 @@
+{% extends "admin/layout.html" %}{% block body %}
+
+<div class="container my-5 flex-grow-1">
+        <div class="row">
+            <div class="col d-flex flex-column align-items-center text-center">
+                <h4>Data Mahasiswa:</h4>
+                <div class="image-container" id="book-img">
+                    <img src="{{ url_for('static', filename='images/library.jpg') }}" alt="plato-book" class="img-fluid">
+                </div>
+                <div id="student-data">
+                    <div id="student-name">
+                        Nama: 
+                        {{user.nama}}
+                    </div>
+                    <div id="student-id">
+                        NIM: 
+                        {{user.nim}}
+                    </div>
+                    <div id="pinjamduluseratus">
+                        DENDA: 
+                        {{ transaction.denda }}
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex flex-column align-items-center text-center">
+                <h4>Data Buku:</h4>
+                <div class="image-container" id="book-img">
+                    <img src="data:image/jpeg;base64,{{ book.image|b64encode }}" alt="plato-book" class="img-fluid" style="max-width: 300px;">
+                </div>
+                <div id="book-title">
+                    Title: {{book.title}}
+                </div>
+                <div id="author">
+                    Author: {{book.author}}
+                </div>
+                <div id="book-stats">
+                    {% if book.status == 1 %}
+                    AVAILABLE
+                    {% else %}
+                    BORROWED
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background-color: #800507; padding: 15px; text-align: center;" class="fixed-bottom">
+        <form action="/check-return/{{ book.book_id }}/{{ user.nim }}" method="post">
+            <button type="submit" class="btn text-white">KEMBALIKAN</button>
+        </form>
+    </div>
+</body>
+
+{%endblock%}

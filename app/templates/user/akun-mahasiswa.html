@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title -->
+    <title>CIT Library &mdash;</title>
+    
+    <!-- CSS File Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Cdn Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top p-3" style="background-color: #800507;">
+        <div class="container">
+            <a class="navbar-brand text-white fw-medium" href="#">CIT Library</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="peminjaman.html">Peminjaman</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Informasi</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="pustakawan.html">Pustakawan</a></li>
+                            <li><a class="dropdown-item" href="lokasi.html">Lokasi</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Akun Mahasiswa</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="e.g Library and Information" aria-label="Search">
+                    <button class="btn btn-secondary me-3" type="submit">Search</button>
+                </form>
+            
+                <button type="button" class="btn btn-outline-light">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <!-- end of navbar -->
+
+
+    <!-- hero -->
+    <div class="container">
+        <section id="hero" class="text-center">
+            <h2 class="display-6" style="margin-top: 10%; margin-bottom: 2% !important">Informasi Akun Mahasiswa</h2>
+        </section>
+    </div>
+    <!-- end of hero -->
+
+
+    <!-- infomarsi akun mahasiswa -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-left mt-5">
+                <h3 class="mb-3">Hi, Cleve Giosia Adryana</h3>
+                <p>Selamat Datang di Area Anggota, tempat Anda dapat melihat status keanggotaan.</p>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <img src="images/cleve.jpeg" class="card-img-top rounded" alt="foto_mahasiswa">
+                </div>                
+                <div class="col-md-9">
+                    <div class="card" style="max-width: 350px;">
+                        <div class="card-header">Status</div>
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p style="font-size: 16px;">Anda saat ini masuk sebagai anggota: Cleve Giosia Adryana (cadryana25@students.calvin.ac.id)</p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group" style="max-width: 680px;">
+                <li class="list-group-item list-group-item-success mb-3 text-center">Anda masih terdaftar sebagai Anggota CIT Library.</li> <!-- Tambahkan class "mb-3" di sini -->
+            </ul>
+        </div>
+    </div>
+    <!-- end of infomarsi akun mahasiswa -->
+
+
+    <!-- footer -->
+    <footer class="py-5 mt-5" style="background-color: #800507;">
+        <div class="container text-light text-center">
+            <p class="display-5 mb-3">CIT Library</p>
+            <small class="text-white-50">&copy; Copyright by CIT Library. All rights reserved.</small>
+        </div>
+    </footer>
+    <!-- end of footer -->
+    
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

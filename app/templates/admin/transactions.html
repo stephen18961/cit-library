@@ -1,0 +1,29 @@
+{% extends "admin/layout.html" %}{% block body %}
+
+    <div class="container mt-3">
+        <h1 class="main-color">Daftar Transaksi</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Transaksi</th>
+                    <th>NIM</th>
+                    <th>ID Buku</th>
+                    <th>Tanggal Peminjaman</th>
+                    <th>Denda (IDR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.id_transaksi }}</td>
+                        <td>{{ transaction.nim }}</td>
+                        <td>{{ transaction.book_id }}</td>
+                        <td>{{ transaction.tanggal_peminjaman }}</td>
+                        <td>{{ transaction.denda }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{%endblock%}

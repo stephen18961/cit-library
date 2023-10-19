@@ -1,0 +1,50 @@
+{% extends "admin/layout.html" %}{% block body %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="main-color text-start my-3">Daftar Buku</h1>
+            </div>
+            <div class="col">
+                <div class="container text-end">
+                    <a href="{{ url_for('admin.add_book') }}" class="btn btn-main my-4">Tambah Buku</a>
+                </div>
+            </div>
+        </div>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Buku</th>
+                    <th>Kategori</th>
+                    <th>Judul</th>
+                    <th>Penulis</th>
+                    <th>ISBN</th>
+                    <th>Status</th>
+                    <th>Deskripsi</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.book_id }}</td>
+                        <td>{{ book.category }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.isbn }}</td>
+                        <td>{{ "Tersedia" if book.status else "Tidak Tersedia" }}</td>
+                        <td>{{ book.description }}</td>
+                        <td><img src="{{ book.image }}" alt="{{ book.title }}" width="150"></td>
+                        <td>
+                            <a href="{{ url_for('admin.edit_book', book_id=book.book_id) }}" class="btn btn-main">Edit</a>
+                            <a href="{{ url_for('admin.delete_book', book_id=book.book_id) }}" class="btn btn-secondary" onclick="return confirm('Apakah Anda yakin ingin menghapus buku ini?')">Hapus</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{%endblock%}
