@@ -34,10 +34,11 @@ Before you begin, ensure you have met the following requirements:
 1. Create a new virtual environment:
 
     ```shell
-    pipenv shell
+    python -m venv .venv
+    .venv\scripts\activate
     ```
 
-2. Install project dependencies using Pipenv:
+2. Install project dependencies using PIP:
 
     ```shell
     pip install -r requirements.txt
