@@ -2,3 +2,4 @@ Flask
 Flask-MySQL
 Flask-SQLAlchemy
 Flask-Bcrypt
+Flask-migrate
