@@ -22,24 +22,32 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                {% if borrowed_books %}
+                {% for book, transaction_date, deadline_date in borrowed_books %}
                 <div class="row mt-3">
                     <div class="col-md-3 mb-3">
-                        <img src="images/book-cover.png" class="card-img-top rounded" alt="book-cover">
-                    </div>                
+                        <img src="data:image/jpeg;base64,{{ book.image | b64encode }}" class="card-img-top rounded" alt="{{ book.title }}-book">
+                    </div>
                     <div class="col-md-9">
                         <ul class="list-group" style="max-width: 500px;">
-                            <li class="list-group-item list-group-item-danger">Tersisa 4 hari lagi untuk pengembalian buku!</li>
+                            <li class="list-group-item list-group-item-danger">Tersisa {{ remaining_days[loop.index0] }} hari lagi untuk pengembalian buku!</li>
                         </ul>
                         <div class="card mt-3">
                             <div class="card-header">Status</div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                    <p style="font-size: 16px;">Kamu sedang meminjam buku LEAD BY PAUL DAVID TRIPP. <br> Tenggat Waktu: 28 Oktober 2023</p>
+                                    <p style="font-size: 16px;">Kamu sedang meminjam buku {{book.title}} by {{book.author}}. <br> Tenggat Waktu: {{ deadline_date.strftime('%d %B %Y') }}</p>
                                 </blockquote>
                             </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
+                {% else %}
+                <ul class="list-group my-2" style="max-width: 500px">
+                    <li class="list-group-item list-group-item-primary">Anda sedang tidak meminjam buku</li>
+                </ul>
+                {% endif %}
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                 <div class="row mt-3">

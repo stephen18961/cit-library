@@ -1,75 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Tambah Buku</title>
-    <!-- Menambahkan tautan ke Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Gaya CSS Kustom -->
-    <style>
-        body {
-            margin: 20px;
-            padding-top: 70px;
-        }
-        .main-color {
-            color: #800507;
-        }
-        .btn-main {
-            background-color: #800507;
-            color: #fff;
-        }
-        #imagePreview {
-            max-width: 200px;
-            max-height: 200px;
-            display: none;
-        }
-        .navbar {
-            background-color: #800507;
-        }
-        .navbar a {
-            color: #fff;
-        }
-    </style>
-    <script>
-    function previewImage(input) {
-        var imagePreview = document.getElementById('imagePreview');
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            imagePreview.src = '';
-            imagePreview.style.display = 'none';
-        }
+{% extends "admin/layout.html" %} {% block body %}
+<style>
+    #imagePreview {
+        max-width: 200px;
+        max-height: 200px;
+        display: none;
     }
-    </script>
-</head>
-<body>
-    <h1 class="main-color">Tambah Buku</h1>
-    <nav class="navbar navbar-expand-lg fixed-top"> 
-        <a class="navbar-brand main-color" href="#">Daftar Buku</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Peminjaman</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pengembalian</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Keterlambatan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrasi Akun</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+</style>
+<div class="container">
     <form method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="book_id">ID Buku:</label>
@@ -93,19 +30,21 @@
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <input type="text" class="form-control" name="description" value="{{ book.description }}">
+            <input type="text" class="form-control" name="description">
         </div>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" name="status" value="1">
             <label class="form-check-label" for="status">Available</label>
         </div>
         <div class="form-group">
-            <label for="image" class="main-color">Gambar Buku:</label>
-            <img id="imagePreview" src="" alt="Pratinjau Gambar">
+            <label for="image" class="main-color">Gambar Buku:</label><br>
+            <img id="imagePreview" src="" alt="Pratinjau Gambar"><br>
             <input type="file" class="form-control-file" name="image" accept="image/*" required onchange="previewImage(this)">
-        </div>
+        </div><br>
         <button type="submit" class="btn btn-main">Tambahkan</button>
     </form>
+    <br>
+    <a href="{{ url_for('admin.bibliography') }}" class="btn btn-secondary">Kembali</a>
     <br>
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -114,6 +53,22 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
-    <a href="{{ url_for('admin.bibliography') }}" class="btn btn-secondary">Kembali</a>
-</body>
-</html>
+</div>
+    
+<script>
+    function previewImage(input) {
+        var imagePreview = document.getElementById('imagePreview');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            imagePreview.src = '';
+            imagePreview.style.display = 'none';
+        }
+    }
+    </script>
+{% endblock %}

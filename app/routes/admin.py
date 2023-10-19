@@ -70,7 +70,7 @@ def add_book():
             title = request.form['title']
             author = request.form['author']
             isbn = request.form['isbn']
-            book.description = request.form['description']
+            description = request.form['description']
             status = bool(request.form.get('status'))
 
             # Mengambil file gambar yang diunggah oleh pengguna
@@ -79,7 +79,7 @@ def add_book():
             # Membaca file gambar sebagai blob
             image_blob = image.read()
 
-            book = Book(book_id=book_id, category=category, title=title, author=author, isbn=isbn, status=status, image=image_blob)
+            book = Book(book_id=book_id, category=category, title=title, author=author, isbn=isbn, status=status, image=image_blob, description=description)
             db.session.add(book)
             db.session.commit()
             return redirect(url_for('admin.bibliography'))
