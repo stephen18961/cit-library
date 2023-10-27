@@ -25,6 +25,22 @@ def index():
     
     return render_template('user/index.html', books=books)
 
+@user_page.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    if query:
+        # Initialize the query for the Book model
+        query = f"%{query}%"  # Wrap the query with % for partial matching
+        books = Book.query.filter(
+            (Book.title.ilike(query)) |
+            (Book.author.ilike(query)) |
+            (Book.description.ilike(query))
+        ).all()
+        return render_template('user/index.html', books=books)
+    else:
+        flash("No books found.", 'info')
+        return render_template('user/index.html', books=[])
+
 @user_page.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == 'POST':
@@ -88,3 +104,15 @@ def lokasi():
         return redirect(url_for('user.login'))
     
     return render_template('user/lokasi.html')
+
+@user_page.route('/akun')
+def akun():
+    if not session.get("logged_in"):
+        return redirect(url_for('user.login'))
+    
+    nim = session.get('id')
+    
+    user = User.query.filter_by(nim=nim).first()
+
+    print(user)
+    return render_template('user/akun-mahasiswa.html', user=user)

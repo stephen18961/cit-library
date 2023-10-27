@@ -140,6 +140,13 @@ def check_borrow():
     user = User.query.filter_by(nim=NIM).first()
     book = Book.query.filter_by(book_id=BOOK_ID).first()
 
+    if not user:
+        flash("NIM not found", "danger")
+        return redirect(url_for('admin.borrow'))
+    if not book:
+        flash("Book not found", "danger")
+        return redirect(url_for('admin.borrow'))
+
     return render_template('admin/check-borrow.html', user=user, book=book)
 
 @admin_page.route('/check-borrow/<book_id>/<NIM>', methods=['POST'])
@@ -162,7 +169,7 @@ def borrow_book(book_id, NIM):
         db.session.add(transaction)
         db.session.commit()
     else:
-        flash("Book not found", "error")
+        flash("Book not found", "danger")
         
     return redirect(url_for('admin.dashboard'))
 
@@ -172,6 +179,7 @@ def retur():
         return redirect(url_for('admin.login_admin'))
     else:
         return render_template('admin/return.html')
+    
     
 @admin_page.route('/check-return', methods=['GET', 'POST'])
 def check_return():
@@ -184,6 +192,17 @@ def check_return():
     user = User.query.filter_by(nim=NIM).first()
     book = Book.query.filter_by(book_id=BOOK_ID).first()
 
+    if not user:
+        flash("NIM not found", "danger")
+        return redirect(url_for('admin.borrow'))
+    if not book:
+        flash("Book not found", "danger")
+        return redirect(url_for('admin.borrow'))
+    
+    # if book.status == 1:
+    #     flash("Book is not borrowed", "danger")
+    #     return redirect(url_for('admin.borrow'))
+
     transactions = Transactions.query.filter_by(book_id = BOOK_ID).first()
     transactions.denda = transactions.hitung_denda()
 
@@ -192,13 +211,35 @@ def check_return():
 @admin_page.route('/check-return/<book_id>/<NIM>', methods=['POST'])
 def return_book(book_id, NIM):
     book = Book.query.get(book_id)
+    user = User.query.get(NIM)
+
+    if not user:
+        flash("NIM not found", "danger")
+        return redirect(url_for('admin.borrow'))
+    if not book:
+        flash("Book not found", "danger")
+        return redirect(url_for('admin.borrow'))
+    
+    # if book.status == 1:
+    #     flash("Book is not borrowed", "danger")
+    #     return redirect(url_for('admin.borrow'))
 
     if book:
         book.status = 1
         db.session.commit()
         flash("Book status updated successfully", "success")
+
+        # # Create a new history of transacion.
+        # today = date.today()
+        # transaction_hist = TransactionsHistory(
+        #     nim=user.nim,
+        #     book_id=book.book_id,
+        #     tanggal_selesai=today
+        # )
+        # db.session.add(transaction_hist)
+
         transaction = Transactions.query.filter_by(book_id=book_id).first()
-        db.session.delete(transaction)
+        transaction.tanggal_selesai = date.today()
         db.session.commit()
     else:
         flash("Book not found", "error")

@@ -5,7 +5,7 @@
             <div class="col d-flex flex-column align-items-center text-center">
                 <h4>Data Mahasiswa:</h4>
                 <div class="image-container" id="book-img">
-                    <img src="{{ url_for('static', filename='images/library.jpg') }}" alt="plato-book" class="img-fluid">
+                    <img src="{{ url_for('static', filename='images/profile-default.png') }}" alt="plato-book" class="img-fluid" style="width: 306px; height: 306px;">
                 </div>
                 <div id="student-data">
                     <div id="student-name">
@@ -16,7 +16,7 @@
                         NIM: 
                         {{user.nim}}
                     </div>
-                    <div id="pinjamduluseratus">
+                    <div id="pinjam">
                         DENDA: 
                         {{ transaction.denda }}
                     </div>

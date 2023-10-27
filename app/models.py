@@ -11,7 +11,7 @@ class User(db.Model):
     password = db.Column(db.String(128), nullable = False)
 
     def __repr__(self):
-        return f'<User nomor_induk={self.nomor_induk}>'
+        return f'<User NIM={self.nim}>'
     
 
 class Admin(db.Model):
@@ -21,7 +21,7 @@ class Admin(db.Model):
     password = db.Column(db.String(64))
 
     def __repr__(self):
-        return f'<ADMIN id={self.admin}>'
+        return f'<ADMIN id={self.id}>'
 
 class Book(db.Model):
     __tablename__ = 'books'
@@ -42,6 +42,7 @@ class Transactions(db.Model):
     nim = db.Column(db.String(9), db.ForeignKey('users.nim'), nullable=False)
     book_id = db.Column(db.String(5), db.ForeignKey('books.book_id'), nullable=False)
     tanggal_peminjaman = db.Column(db.Date, nullable=False)
+    tanggal_selesai = db.Column(db.Date, nullable=True)
 
     def hitung_denda(self):
             tanggal_sekarang = date.today()
@@ -52,3 +53,6 @@ class Transactions(db.Model):
                 denda = 0
 
             return denda
+    
+    def __repr__(self):
+        return f'<ADMIN id={self.id_transaksi}>'
